@@ -1,0 +1,252 @@
+{
+  "id": "88379744-44d1-44b6-9b4d-3de518e382ea",
+  "version": "2.0",
+  "name": "ApiUSER-Auto",
+  "url": "http://localhost:3000/Usuarios",
+  "tests": [{
+    "id": "30ac472a-6cca-41d4-a1e2-30ebca305262",
+    "name": "Inserir Registros",
+    "commands": [{
+      "id": "fe229a5a-3528-44de-bad2-3d82560c68e5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/Usuarios",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "671f3fc7-f4cb-48f6-8972-108502ab4780",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1011x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "373cf9dc-212c-4c29-865a-feb4280f705b",
+      "comment": "Loop de Execução",
+      "command": "times",
+      "target": "10",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2543557c-d6b5-4387-afac-93d3f399db90",
+      "comment": "Gerar nomes",
+      "command": "executeScript",
+      "target": "var nomeList = [   'Carlos', 'Anita', 'Roberto', 'Luiz',   'Rodrigo', 'John', 'Jackson', 'Jonny', 'Leandro', 'Mauro',   'João', 'Joe', 'Mateus', 'Clara', 'Gustavo', 'Rogério', 'Roque',   'Ana', 'Zoe', 'Sabrina', 'Clóvis', 'Paulo', 'Rodrigo', 'Russel',   'Dalila', 'Hommer', 'Izadora', 'Jaime', 'Janio', 'Brad', 'Charles',   'Gabriela', 'Rafael', 'Lisandra', 'Henrique', 'Collin', 'James', 'Valter']; var sobreNomeList = [   'Oliveira', 'Teixeira', 'Nobre', 'Silva',   'Santos', 'Benedetti', 'Rizek', 'Braga', 'Gomes', 'Veiga',   'Fontes', 'Chaves', 'Leite', 'Nascimento', 'Mathias', 'Bispo', 'Filho',   'Ribeiro', 'Souza', 'Noriega', 'Crow', 'Carazai', 'Senna', 'Washington',   'Duran', 'Fontes', 'Vilanni', 'Abreu', 'Pitt', 'Joy', 'Johanson',   'Schmidit', 'Flores', 'Ernan', 'Moraes', 'Farew', 'Kindman', 'deVitto'];  var nomePF = nomeList[Math.floor(Math.random() * nomeList.length)]; var sobrenomePF = sobreNomeList[Math.floor(Math.random() * sobreNomeList.length)]; return nomePF + \" \" + sobrenomePF;",
+      "targets": [],
+      "value": "nome"
+    }, {
+      "id": "3703357e-7ea6-416b-854c-d793efe1eed6",
+      "comment": "",
+      "command": "click",
+      "target": "name=nome",
+      "targets": [
+        ["name=nome", "name"],
+        ["css=.sc-gEvEer:nth-child(1) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='nome']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56b2ed9a-d35a-4f35-bdc5-d49a6e0e86e3",
+      "comment": "Gera Email",
+      "command": "executeScript",
+      "target": "return ${nome}.replace(\" \",\"_\").toLowerCase() + \"@email.com\";",
+      "targets": [],
+      "value": "email"
+    }, {
+      "id": "a739db3a-0b78-46af-bf30-b56adfe84084",
+      "comment": "Nome gerado random",
+      "command": "type",
+      "target": "name=nome",
+      "targets": [
+        ["name=nome", "name"],
+        ["css=.sc-gEvEer:nth-child(1) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='nome']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${nome}"
+    }, {
+      "id": "4ab47142-5a58-481b-b249-5c5d5ca53dcc",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.sc-gEvEer:nth-child(2) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0e3c905-ef50-4017-8f42-9a91b8bbb5ce",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.sc-gEvEer:nth-child(2) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${email}"
+    }, {
+      "id": "29b01995-c89f-4911-9f44-6a39cba4a014",
+      "comment": "",
+      "command": "click",
+      "target": "name=fone",
+      "targets": [
+        ["name=fone", "name"],
+        ["css=.sc-gEvEer:nth-child(3) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='fone']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ab9691f-e69d-4ad2-9f8e-2594278a3cd1",
+      "comment": "",
+      "command": "type",
+      "target": "name=fone",
+      "targets": [
+        ["name=fone", "name"],
+        ["css=.sc-gEvEer:nth-child(3) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='fone']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "5148958788"
+    }, {
+      "id": "2568a9f6-8493-4366-9c86-c1c496e0bbcf",
+      "comment": "Gera CPF",
+      "command": "executeScript",
+      "target": "var cpf1 = Math.floor(Math.random() * 998) + 1; if(cpf1 <10){    cpf1 = \"00\" + cpf1;   } else if (cpf1 <100) {cpf1 = \"0\" + cpf1; }; var cpf2 = Math.floor(Math.random() * 998) + 1; if(cpf2 <10){    cpf2 = \"00\" + cpf2;   } else if (cpf2 <100){cpf2 = \"0\" + cpf2;}; var cpf3 = Math.floor(Math.random() * 998) + 1; if(cpf3 <10){    cpf3 = \"00\" + cpf3;   } else if (cpf3 <100) { cpf3 = \"0\" + cpf3; } var dv = Math.floor(Math.random() * 98) + 1; if(dv <10){ dv = \"0\" + dv; }; return cpf1 + \"\" + cpf2 + \"\" + cpf3 + \"\" + dv;",
+      "targets": [],
+      "value": "cpf"
+    }, {
+      "id": "7103001e-bef9-4d19-858f-cb1b327b04bf",
+      "comment": "",
+      "command": "click",
+      "target": "name=cpf",
+      "targets": [
+        ["name=cpf", "name"],
+        ["css=.sc-gEvEer:nth-child(4) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='cpf']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab96329a-9bb3-41b7-bb6d-5f2349355077",
+      "comment": "",
+      "command": "type",
+      "target": "name=cpf",
+      "targets": [
+        ["name=cpf", "name"],
+        ["css=.sc-gEvEer:nth-child(4) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='cpf']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "${cpf}"
+    }, {
+      "id": "7ebb3fb4-cd4b-41a2-ab1c-021368085ae4",
+      "comment": "",
+      "command": "click",
+      "target": "name=data_nascimento",
+      "targets": [
+        ["name=data_nascimento", "name"],
+        ["css=.sc-gEvEer:nth-child(5) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='data_nascimento']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41316c31-b8e3-418f-b0c8-c720d4631233",
+      "comment": "",
+      "command": "type",
+      "target": "name=data_nascimento",
+      "targets": [
+        ["name=data_nascimento", "name"],
+        ["css=.sc-gEvEer:nth-child(5) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='data_nascimento']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "0001-01-10"
+    }, {
+      "id": "53e1ef90-8015-4418-a300-09d522074b6c",
+      "comment": "",
+      "command": "type",
+      "target": "name=data_nascimento",
+      "targets": [
+        ["name=data_nascimento", "name"],
+        ["css=.sc-gEvEer:nth-child(5) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='data_nascimento']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "0019-01-10"
+    }, {
+      "id": "85e0203d-be56-4952-83a3-013730bd847e",
+      "comment": "",
+      "command": "type",
+      "target": "name=data_nascimento",
+      "targets": [
+        ["name=data_nascimento", "name"],
+        ["css=.sc-gEvEer:nth-child(5) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='data_nascimento']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "0190-01-10"
+    }, {
+      "id": "dfd5b238-4d06-41b0-8f11-b9ef96e2bd5c",
+      "comment": "",
+      "command": "type",
+      "target": "name=data_nascimento",
+      "targets": [
+        ["name=data_nascimento", "name"],
+        ["css=.sc-gEvEer:nth-child(5) > .sc-eqUAAy", "css:finder"],
+        ["xpath=//input[@name='data_nascimento']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/div[5]/input", "xpath:idRelative"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "1900-01-10"
+    }, {
+      "id": "2be32573-06d5-4430-bfa0-151d1cea3d67",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-dcJsrY",
+      "targets": [
+        ["css=.sc-dcJsrY", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Confirma')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a21539b1-8f62-44cf-9f19-9bb92d59931a",
+      "comment": "Fim do Loop de Execução",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "834b1305-47ee-450e-b4c0-fe9c1f414132",
+    "name": "Suite Gerar Registros",
+    "persistSession": false,
+    "parallel": true,
+    "timeout": 300,
+    "tests": ["30ac472a-6cca-41d4-a1e2-30ebca305262"]
+  }],
+  "urls": ["http://localhost:3000/Usuarios"],
+  "plugins": []
+}
