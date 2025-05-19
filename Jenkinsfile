@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh './mvn clean install'  // ou 'mvn clean install', dependendo do gerenciador de build usado
+                    sh 'mvn clean install'  // ou 'mvn clean install', dependendo do gerenciador de build usado
                 }
             }
         }
