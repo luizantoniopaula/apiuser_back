@@ -22,13 +22,13 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
-            steps {
-                script {
-                    // executar Script instala.sh a ser criado...
-                }
-            }
-        }
+        //stage('Deploy') {
+        //    steps {
+        //        script {
+        //            // executar Script instala.sh a ser criado...
+        //        }
+        //    }
+        // }
     }
     
     post {
