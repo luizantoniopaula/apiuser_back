@@ -11,10 +11,12 @@ pipeline {
         }
         
         stage('SonarQube Analysis') {
+
             steps {
                 script {
+                    def mvn = tool 'Default Maven';
                     withSonarQubeEnv('SonarQube Server Name') {
-                        sh './mvn sonarqube' // ou a execução correspondente para Maven
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=apiuser_back"
                     }
                 }
             }
