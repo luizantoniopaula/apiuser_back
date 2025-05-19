@@ -16,7 +16,7 @@ pipeline {
                 script {
                     def mvn = tool 'Default Maven';
                     withSonarQubeEnv('SonarQube Server Name') {
-                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=apiuser_back"
+                        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=apiuser_back"
                     }
                 }
             }
