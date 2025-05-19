@@ -25,7 +25,7 @@ pipeline {
         //stage('Deploy') {
         //    steps {
         //        script {
-        //            // executar Script instala.sh a ser criado...
+        //              // executar Script instala.sh a ser criado...
         //        }
         //    }
         // }
