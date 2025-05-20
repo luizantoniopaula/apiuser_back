@@ -59,7 +59,7 @@ pipeline {
                     After=network.target
 
                     [Service]
-                    User=senai  # Altere para o usuário correto
+                    User=senai
                     ExecStart=/usr/bin/java -jar ${INSTALL_DIR}/${env.JAR_FILE}
                     Restart=always
                     SuccessExitStatus=143
