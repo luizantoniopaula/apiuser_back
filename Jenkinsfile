@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Obter o nome do arquivo jar gerado automaticamente
                 script {
-                    def files = sh(script: "ls target/${PROJECT_NAME}*.jar", returnStdout: true).trim()
+                    def files = sh(script: "ls target/${PROJECT_NAME}*.jar | cut -f2 -d'/'", returnStdout: true).trim()
                     // Usa regex para extrair somente o nome do arquivo jar
                     env.JAR_FILE = files.split('\n')[0].trim()
                     echo "Encontrado JAR: ${env.JAR_FILE}"
