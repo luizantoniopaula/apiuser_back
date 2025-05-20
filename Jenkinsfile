@@ -4,7 +4,7 @@ pipeline {
         // Diretório de instalação onde o seu build será copiado
         INSTALL_DIR = "/opt/jenkins/apiuser"
         // Nome do arquivo JAR gerado pelo build
-        JAR_FILE = "apiuser-1.0.0.jar"
+        PROJECT_NAME = "apiuser"
     }
 
     stages {
@@ -15,9 +15,19 @@ pipeline {
                 }
             }
         }
+        stage('Identificar JAR') {
+            steps {
+                // Obter o nome do arquivo jar gerado automaticamente
+                script {
+                    def files = sh(script: "ls target/${PROJECT_NAME}*.jar", returnStdout: true).trim()
+                    // Usa regex para extrair somente o nome do arquivo jar
+                    env.JAR_FILE = files.split('\n')[0].trim()
+                    echo "Encontrado JAR: ${env.JAR_FILE}"
+                }
+            }
+        }
         
         stage('SonarQube Analysis') {
-
             steps {
                 script {
                     def mvn = tool 'Maven3_9_9';
@@ -39,32 +49,36 @@ pipeline {
                 """
             }
         }
-        stage('Iniciar Aplicação') {
+        stage('Configurar systemd') {
             steps {
-                // Parar um possível processo em execução (opcional, dependendo do seu cenário)
-                sh '''
-                PIDS=$(ps -ef | grep ${INSTALL_DIR}/${JAR_FILE} | grep -v grep | awk '{print $2}')
-                if [ -n "$PIDS" ]; then
-                    echo "Parando processo existente..."
-                    kill -9 $PIDS
-                fi
-                '''
+                // Cria um arquivo de serviço systemd para gerenciar a aplicação
+                script {
+                    def serviceContent = """
+                    [Unit]
+                    Description=ApiUser Spring Boot Application
+                    After=network.target
 
-                // Iniciar a aplicação com o comando java -jar
-                sh '''
-                nohup java -jar ${INSTALL_DIR}/${JAR_FILE} > ${INSTALL_DIR}/apiuser.log 2>&1 &
-                echo $! > ${INSTALL_DIR}/apiuser.pid
-                '''
+                    [Service]
+                    User=senai  # Altere para o usuário correto
+                    ExecStart=/usr/bin/java -jar ${INSTALL_DIR}/${env.JAR_FILE}
+                    Restart=always
+                    SuccessExitStatus=143
+
+                    [Install]
+                    WantedBy=multi-user.target
+                    """
+                    writeFile file: '/tmp/apiuser.service', text: serviceContent
+
+                    // Move o arquivo para o diretório do systemd e habilita
+                    sh '''
+                    sudo mv /tmp/apiuser.service /etc/systemd/system/apiuser.service
+                    sudo systemctl daemon-reload
+                    sudo systemctl enable apiuser
+                    sudo systemctl restart apiuser
+                    '''
+                }
             }
         }
-        
-        //stage('Deploy') {
-        //    steps {
-        //        script {
-        //              // executar Script instala.sh a ser criado...
-        //        }
-        //    }
-        // }
     }
     
     post {
